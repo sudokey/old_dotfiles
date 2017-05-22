@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'https://github.com/ryym/vim-riot'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
+    " Plug 'vim-airline/vim-airline'
 
 " Initialize plugin system
 call plug#end()
@@ -129,11 +130,11 @@ filetype plugin indent on   " required
     set path=.,,**
 
     " Minimal number of lines to scroll when cursor gets off the screen
-    set scrolljump=5
+    " set scrolljump=5
 
     " Minimal number of lines to keep above and below the cursor
     " Typewriter mode = keep current line in the center
-    set scrolloff=999
+    " set scrolloff=999
 
     " Display invisible characters
     set list
@@ -202,33 +203,33 @@ filetype plugin indent on   " required
     set laststatus=2
     " Content of the status line
     " Only available when compiled with the +statusline feature
-    set statusline=\
+    set statusline=[
     " Buffer number
-    set statusline+=%n:\
+    set statusline+=%n] 
     " File name
-    set statusline+=%t
+    set statusline+=[%t]
     " Modified flag
     set statusline+=%m
-    set statusline+=\ \
+    " set statusline+=\ \
     " Paste mode flag
-    set statusline+=%{&paste?'[paste]\ ':''}
+    set statusline+=%{&paste?'[paste]':''}
     " File encoding
-    set statusline+=%{&fileencoding}
+    set statusline+=[%{&fileencoding}]
     " Type of file
     " Only available when compiled with the +autocmd feature
-    set statusline+=\ \ %Y
+    set statusline+=%y
     " Column number
-    set statusline+=\ %3.3(%c%)
+    " set statusline+=\ %3.3(%c%)
     " Current line / number of lines in buffer
-    set statusline+=\ \ %3.9(%l/%L%)
+    set statusline+=[%3.9(%l/%L%)]
     " Percentage through file in lines
     " set statusline+=\ \ %2.3p%%
     " File size
-    set statusline+=\ \ %{FileSize()}
+    " set statusline+=\ \ %{FileSize()}
     " Truncate here if line is too long
     set statusline+=%<
     " Path to the file
-    set statusline+=\ \ CurDir:%{CurDir()}
+    set statusline+=%=%{CurDir()}
 
 " Plugins
     " Solarized
