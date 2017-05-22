@@ -8,12 +8,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'git://github.com/altercation/vim-colors-solarized.git'
     Plug 'https://github.com/pangloss/vim-javascript'
     Plug 'https://github.com/mxw/vim-jsx'
-    Plug 'git://github.com/kien/ctrlp.vim.git'
     Plug 'https://github.com/scrooloose/nerdtree'
     Plug 'https://github.com/wavded/vim-stylus'
     Plug 'https://github.com/ryym/vim-riot'
-    Plug 'https://github.com/mileszs/ack.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+    Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -258,19 +257,34 @@ filetype plugin indent on   " required
         let NERDTreeDirArrows=1
         let NERDTreeBookmarksFile= $HOME . '/.vim/.NERDTreeBookmarks'
         nmap ,n :NERDTreeFind<CR>
+        let g:NERDTreeWinSize = 50
 
     " Ack
         " Replace ack on the_silver_searcher
         let g:ackprg = 'ag --vimgrep'
 
+    " FZF
+        " Mapping selecting mappings
+        nmap <leader><tab> <plug>(fzf-maps-n)
+        xmap <leader><tab> <plug>(fzf-maps-x)
+        omap <leader><tab> <plug>(fzf-maps-o)
+
+        " Insert mode completion
+        imap <c-x><c-k> <plug>(fzf-complete-word)
+        imap <c-x><c-f> <plug>(fzf-complete-path)
+        imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+        imap <c-x><c-l> <plug>(fzf-complete-line)
+
 " Шорткаты
     let mapleader = ","
 
-    nmap ,n :NERDTreeFind<CR>
+    " Find file in nerdtree
+        nmap ,n :NERDTreeFind<CR>
 
     " ,bl
         " Show buffers
-        nnoremap <Leader>bl :<C-u>ls<cr>:b
+        " nnoremap <Leader>bl :<C-u>ls<cr>:b
+        nnoremap <Leader>bl :<C-u>Buffers<cr>
 
     " ,bp
         " Go to prev buffer
@@ -308,3 +322,10 @@ filetype plugin indent on   " required
     " ,p
         " Toggle the 'paste' option
         set pastetoggle=<Leader>p
+
+    " Ctrl T
+        nnoremap <C-t> :<C-u>Files<cr>
+
+    " ,w
+        " Toggle wrap
+        nnoremap <leader>w :setlocal wrap!<cr>
