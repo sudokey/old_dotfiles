@@ -1,30 +1,23 @@
 set nocompatible    " be iMproved, required
 filetype off        " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
+call plug#begin('~/.vim/plugged')
 
 " Plugins
-    Bundle 'git://github.com/altercation/vim-colors-solarized.git'
-    Bundle 'https://github.com/pangloss/vim-javascript'
-    Bundle 'https://github.com/mxw/vim-jsx'
-    Bundle 'git://github.com/kien/ctrlp.vim.git'
-    Bundle 'https://github.com/scrooloose/nerdtree'
-    Bundle 'https://github.com/wavded/vim-stylus'
-    Bundle 'https://github.com/ryym/vim-riot'
-    Bundle 'https://github.com/mileszs/ack.vim'
+    Plug 'git://github.com/altercation/vim-colors-solarized.git'
+    Plug 'https://github.com/pangloss/vim-javascript'
+    Plug 'https://github.com/mxw/vim-jsx'
+    Plug 'git://github.com/kien/ctrlp.vim.git'
+    Plug 'https://github.com/scrooloose/nerdtree'
+    Plug 'https://github.com/wavded/vim-stylus'
+    Plug 'https://github.com/ryym/vim-riot'
+    Plug 'https://github.com/mileszs/ack.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 
-" All of your Plugins must be added before the following line
-call vundle#end()
-filetype plugin indent on
-" To ignore plugin indent changes, instead use:
-" filetype plugin on
+" Initialize plugin system
+call plug#end()
+filetype plugin indent on   " required
 
 " Interface
     " Character encoding used inside Vim
@@ -158,11 +151,6 @@ filetype plugin indent on
     " Only available when compiled with the +linebreak feature
     set linebreak
 
-     " Show ↪ at the beginning of wrapped lines
-     if has("linebreak")
-         let &sbr = nr2char(8618).' '
-     endif
-
 " Environment
     " Store lots of history entries: :cmdline and search patterns
     set history=1000
@@ -215,14 +203,14 @@ filetype plugin indent on
     set laststatus=2
     " Content of the status line
     " Only available when compiled with the +statusline feature
-    set statusline=\ 
+    set statusline=\
     " Buffer number
-    set statusline+=%n:\ 
+    set statusline+=%n:\
     " File name
     set statusline+=%t
     " Modified flag
     set statusline+=%m
-    set statusline+=\ \ 
+    set statusline+=\ \
     " Paste mode flag
     set statusline+=%{&paste?'[paste]\ ':''}
     " File encoding
@@ -271,6 +259,10 @@ filetype plugin indent on
         let NERDTreeBookmarksFile= $HOME . '/.vim/.NERDTreeBookmarks'
         nmap ,n :NERDTreeFind<CR>
 
+    " Ack
+        " Replace ack on the_silver_searcher
+        let g:ackprg = 'ag --vimgrep'
+
 " Шорткаты
     let mapleader = ","
 
@@ -287,6 +279,10 @@ filetype plugin indent on
     " ,bn
         " Go to next buffer
         nnoremap <Leader>bn :<C-u>bn<cr>
+
+    " ,bd
+        " Remove buffer
+        nnoremap <Leader>bd :<C-u>bd<cr>
 
     " <Esc><Esc>
         " Clear the search highlight in Normal mode
