@@ -1,5 +1,5 @@
-set nocompatible 	" be iMproved, required
-filetype off 		" required
+set nocompatible    " be iMproved, required
+filetype off        " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -11,11 +11,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugins
-	Bundle 'git://github.com/altercation/vim-colors-solarized.git'
-	Bundle 'https://github.com/pangloss/vim-javascript'
+    Bundle 'git://github.com/altercation/vim-colors-solarized.git'
+    Bundle 'https://github.com/pangloss/vim-javascript'
     Bundle 'https://github.com/mxw/vim-jsx'
     Bundle 'git://github.com/kien/ctrlp.vim.git'
     Bundle 'https://github.com/scrooloose/nerdtree'
+    Bundle 'https://github.com/wavded/vim-stylus'
+    Bundle 'https://github.com/ryym/vim-riot'
+    Bundle 'https://github.com/mileszs/ack.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -24,60 +27,60 @@ filetype plugin indent on
 " filetype plugin on
 
 " Interface
-	" Character encoding used inside Vim
-	" Only available when compiled with the +multi_byte feature
-	set encoding=utf-8
+    " Character encoding used inside Vim
+    " Only available when compiled with the +multi_byte feature
+    set encoding=utf-8
 
-	" Character encodings considered when starting to edit an existing file
-	" Only available when compiled with the +multi_byte feature
-	set fileencodings=utf-8,cp1251
+    " Character encodings considered when starting to edit an existing file
+    " Only available when compiled with the +multi_byte feature
+    set fileencodings=utf-8,cp1251
 
-	" Always add lf in the end of file
-	set fileformat=unix
+    " Always add lf in the end of file
+    set fileformat=unix
 
-	" Enhance command-line completion
-	" Only available when compiled with the +wildmenu feature
-	set wildmenu
+    " Enhance command-line completion
+    " Only available when compiled with the +wildmenu feature
+    set wildmenu
 
-	" Set completion mode
-	" When more than one match, list all matches and complete first match
-	" Then complete the next full match
-	set wildmode=list:longest,full
+    " Set completion mode
+    " When more than one match, list all matches and complete first match
+    " Then complete the next full match
+    set wildmode=list:longest,full
 
-	" Ignore following files when completing file/directory names
-	set wildignore+=.hg,.git,.svn
-	set wildignore+=*.DS_Store
-	set wildignore+=*.pyc
-	set wildignore+=*/node_modules/*
-	" set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+    " Ignore following files when completing file/directory names
+    set wildignore+=.hg,.git,.svn
+    set wildignore+=*.DS_Store
+    set wildignore+=*.pyc
+    set wildignore+=*/node_modules/*
+    " set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-	" Set title of the window to filename [+=-] (path) - VIM
-	" Only available when compiled with the +title feature
-	set title
+    " Set title of the window to filename [+=-] (path) - VIM
+    " Only available when compiled with the +title feature
+    set title
 
-	" Show (partial) command in the last line of the screen
-	" Comment this line if your terminal is slow
-	" Only available when compiled with the +cmdline_info feature
-	set showcmd
+    " Show (partial) command in the last line of the screen
+    " Comment this line if your terminal is slow
+    " Only available when compiled with the +cmdline_info feature
+    set showcmd
 
-	" Copy indent from current line when starting a new line
-	set autoindent
+    " Copy indent from current line when starting a new line
+    set autoindent
 
-	" Do smart indenting when starting a new line
-	" Only available when compiled with the +smartindent feature
-	set smartindent
+    " Do smart indenting when starting a new line
+    " Only available when compiled with the +smartindent feature
+    set smartindent
 
-	" Number of spaces to use for each step of (auto)indent
-	set shiftwidth=4
+    " Number of spaces to use for each step of (auto)indent
+    set shiftwidth=4
 
-	" Use spaces instead of tab
-	set expandtab
+    " Use spaces instead of tab
+    set expandtab
 
-	" Number of spaces that a tab counts for
-	set tabstop=4
+    " Number of spaces that a tab counts for
+    set tabstop=4
 
-	" Number of spaces that a tab counts for while performing editing operations
-	set softtabstop=4
+    " Number of spaces that a tab counts for while performing editing operations
+    set softtabstop=4
 
     " Number of pixel lines inserted between characters
     " Only in GUI
@@ -133,35 +136,179 @@ filetype plugin indent on
     " Only available when compiled with the +path_extra feature
     set path=.,,**
 
+    " Minimal number of lines to scroll when cursor gets off the screen
+    set scrolljump=5
+
+    " Minimal number of lines to keep above and below the cursor
+    " Typewriter mode = keep current line in the center
+    set scrolloff=999
+
+    " Display invisible characters
+    set list
+    if version >= 700
+        set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮,nbsp:×
+    else
+        set listchars=tab:»\ ,trail:·,extends:>,precedes:<,nbsp:_
+    endif
+
+    " Wrap long lines
+    set wrap
+
+    " Don't break words when wrapping
+    " Only available when compiled with the +linebreak feature
+    set linebreak
+
+     " Show ↪ at the beginning of wrapped lines
+     if has("linebreak")
+         let &sbr = nr2char(8618).' '
+     endif
+
+" Environment
+    " Store lots of history entries: :cmdline and search patterns
+    set history=1000
+
+    " Backspacing settings
+    " start     allow backspacing over the start of insert;
+    "           CTRL-W and CTRL-U stop once at the start of insert.
+    " indent    allow backspacing over autoindent
+    " eol       allow backspacing over line breaks (join lines)
+    set backspace=indent,eol,start
+
+    " Backup и swp files
+    " Don't create backups
+    set nobackup
+    " Don't create swap files
+    set noswapfile
+
+" Search
+    " While typing a search command, show pattern matches as it is typed
+    " Only available when compiled with the +extra_search feature
+    set incsearch
+    " When there is a previous search pattern, highlight all its matches
+    " Only available when compiled with the +extra_search feature
+    set hlsearch
+    " Ignore case in search patterns
+    set ignorecase
+    " Override the 'ignorecase' if the search pattern contains upper case characters
+    set smartcase
+    " All matches in a line are substituted instead of one
+    set gdefault
+
+" Status line
+    function! FileSize()
+        let bytes = getfsize(expand("%:p"))
+        if bytes <= 0
+            return ""
+        endif
+        if bytes < 1024
+            return bytes . "B"
+        else
+            return (bytes / 1024) . "K"
+        endif
+    endfunction
+
+    function! CurDir()
+        return expand('%:p:~')
+    endfunction
+
+    " Last window always has a status line
+    set laststatus=2
+    " Content of the status line
+    " Only available when compiled with the +statusline feature
+    set statusline=\ 
+    " Buffer number
+    set statusline+=%n:\ 
+    " File name
+    set statusline+=%t
+    " Modified flag
+    set statusline+=%m
+    set statusline+=\ \ 
+    " Paste mode flag
+    set statusline+=%{&paste?'[paste]\ ':''}
+    " File encoding
+    set statusline+=%{&fileencoding}
+    " Type of file
+    " Only available when compiled with the +autocmd feature
+    set statusline+=\ \ %Y
+    " Column number
+    set statusline+=\ %3.3(%c%)
+    " Current line / number of lines in buffer
+    set statusline+=\ \ %3.9(%l/%L%)
+    " Percentage through file in lines
+    " set statusline+=\ \ %2.3p%%
+    " File size
+    set statusline+=\ \ %{FileSize()}
+    " Truncate here if line is too long
+    set statusline+=%<
+    " Path to the file
+    set statusline+=\ \ CurDir:%{CurDir()}
+
 " Plugins
     " Solarized
-    let g:solarized_termcolors=256
-    syntax enable
-    set background=dark
-    colorscheme solarized
+        let g:solarized_termcolors=256
+        syntax enable
+        set background=dark
+        colorscheme solarized
 
     " JSX
-    let g:jsx_ext_required = 0
+        let g:jsx_ext_required = 0
 
     " CtrlP
-    let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_cmd = 'CtrlP'
+        let g:ctrlp_map = '<c-p>'
+        let g:ctrlp_cmd = 'CtrlP'
 
     " Nerdtree
-    nnoremap <Bs> :<C-u>NERDTreeToggle<CR>
-    let NERDTreeShowBookmarks=1
-    let NERDTreeChDirMode=2
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeShowHidden=1
-    let NERDTreeKeepTreeInNewTab=0
-    " Disable display of the 'Bookmarks' label and 'Press ? for help' text
-    let NERDTreeMinimalUI=1
-    " Use arrows instead of + ~ chars when displaying directories
-    let NERDTreeDirArrows=1
-    let NERDTreeBookmarksFile= $HOME . '/.vim/.NERDTreeBookmarks'
-    nmap ,n :NERDTreeFind<CR>
+        nnoremap <Bs> :<C-u>NERDTreeToggle<CR>
+        let NERDTreeShowBookmarks=1
+        let NERDTreeChDirMode=2
+        let NERDTreeQuitOnOpen=1
+        let NERDTreeShowHidden=1
+        let NERDTreeKeepTreeInNewTab=0
+        " Disable display of the 'Bookmarks' label and 'Press ? for help' text
+        let NERDTreeMinimalUI=1
+        " Use arrows instead of + ~ chars when displaying directories
+        let NERDTreeDirArrows=1
+        let NERDTreeBookmarksFile= $HOME . '/.vim/.NERDTreeBookmarks'
+        nmap ,n :NERDTreeFind<CR>
 
 " Шорткаты
     let mapleader = ","
 
-    nmap ,f :NERDTreeFind<CR>
+    nmap ,n :NERDTreeFind<CR>
+
+    " ,bl
+        " Show buffers
+        nnoremap <Leader>bl :<C-u>ls<cr>:b
+
+    " ,bp
+        " Go to prev buffer
+        nnoremap <Leader>bp :<C-u>bp<cr>
+
+    " ,bn
+        " Go to next buffer
+        nnoremap <Leader>bn :<C-u>bn<cr>
+
+    " <Esc><Esc>
+        " Clear the search highlight in Normal mode
+        nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
+
+    " < >
+        vnoremap < <gv
+        vnoremap > >gv
+
+    " n и N
+        " Search matches are always in center
+        nnoremap n nzz
+        nnoremap N Nzz
+        nnoremap * *zz
+        nnoremap # #zz
+        nnoremap g* g*zz
+        nnoremap g# g#zz
+
+    " ,ts
+        " Fix trailing white space
+        nnoremap <leader>ts :<C-u>%s/\s\+$//e<CR>
+
+    " ,p
+        " Toggle the 'paste' option
+        set pastetoggle=<Leader>p
