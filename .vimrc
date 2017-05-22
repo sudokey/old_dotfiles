@@ -5,15 +5,17 @@ filetype off        " required
 call plug#begin('~/.vim/plugged')
 
 " Plugins
-    Plug 'git://github.com/altercation/vim-colors-solarized.git'
-    Plug 'https://github.com/pangloss/vim-javascript'
-    Plug 'https://github.com/mxw/vim-jsx'
-    Plug 'https://github.com/scrooloose/nerdtree'
-    Plug 'https://github.com/wavded/vim-stylus'
-    Plug 'https://github.com/ryym/vim-riot'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-    Plug 'junegunn/fzf.vim'
-    " Plug 'vim-airline/vim-airline'
+    " Syntax
+        Plug 'https://github.com/pangloss/vim-javascript'
+        Plug 'https://github.com/mxw/vim-jsx'
+        Plug 'https://github.com/wavded/vim-stylus'
+        Plug 'https://github.com/ryym/vim-riot'
+
+    " Other
+        Plug 'git://github.com/altercation/vim-colors-solarized.git'
+        Plug 'https://github.com/scrooloose/nerdtree'
+        Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+        Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -276,6 +278,9 @@ filetype plugin indent on   " required
         imap <c-x><c-j> <plug>(fzf-complete-file-ag)
         imap <c-x><c-l> <plug>(fzf-complete-line)
 
+        " Ignoring certain patterns
+        let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+
 " Шорткаты
     let mapleader = ","
 
@@ -284,8 +289,7 @@ filetype plugin indent on   " required
 
     " ,bl
         " Show buffers
-        " nnoremap <Leader>bl :<C-u>ls<cr>:b
-        nnoremap <Leader>bl :<C-u>Buffers<cr>
+        nnoremap <Leader>bl :<C-u>ls<cr>:b
 
     " ,bp
         " Go to prev buffer
@@ -327,6 +331,16 @@ filetype plugin indent on   " required
     " Ctrl T
         nnoremap <C-t> :<C-u>Files<cr>
 
+    " Ctrl B
+        nnoremap <C-b> :<C-u>Buffers<cr>
+
+    " ,gst
+        " Git status
+        nnoremap <leader>gst :<C-u>GFiles?<cr>
+
     " ,w
         " Toggle wrap
         nnoremap <leader>w :setlocal wrap!<cr>
+
+    " ,f
+        nnoremap <leader>f :<C-u>execute "Ag " . expand("<cword>") <Bar> cw<CR>
