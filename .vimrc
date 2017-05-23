@@ -5,6 +5,9 @@ filetype off        " required
 call plug#begin('~/.vim/plugged')
 
 " Plugins
+    " TODO: Less plug
+    " TODO: Nerdcommenter
+    " TODO: Supertab
     " Syntax
         Plug 'https://github.com/pangloss/vim-javascript'
         Plug 'https://github.com/mxw/vim-jsx'
@@ -132,7 +135,7 @@ filetype plugin indent on   " required
     set path=.,,**
 
     " Minimal number of lines to scroll when cursor gets off the screen
-    " set scrolljump=5
+    set scrolljump=5
 
     " Minimal number of lines to keep above and below the cursor
     " Typewriter mode = keep current line in the center
