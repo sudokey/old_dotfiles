@@ -135,7 +135,7 @@ filetype plugin indent on   " required
     set path=.,,**
 
     " Minimal number of lines to scroll when cursor gets off the screen
-    set scrolljump=5
+    " set scrolljump=5
 
     " Minimal number of lines to keep above and below the cursor
     " Typewriter mode = keep current line in the center
@@ -292,7 +292,9 @@ filetype plugin indent on   " required
 
     " ,bl
         " Show buffers
-        nnoremap <Leader>bl :<C-u>ls<cr>:b
+        " nnoremap <Leader>bl :<C-u>ls<cr>:b
+        nnoremap <Leader>bl :<C-u>Buffers<cr>
+
 
     " ,bp
         " Go to prev buffer
@@ -333,9 +335,6 @@ filetype plugin indent on   " required
 
     " Ctrl T
         nnoremap <C-t> :<C-u>Files<cr>
-
-    " Ctrl B
-        nnoremap <C-b> :<C-u>Buffers<cr>
 
     " ,gst
         " Git status
