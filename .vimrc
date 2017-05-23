@@ -7,7 +7,6 @@ call plug#begin('~/.vim/plugged')
 " Plugins
     " TODO: Less plug
     " TODO: Nerdcommenter
-    " TODO: Supertab
     " Syntax
         Plug 'https://github.com/pangloss/vim-javascript'
         Plug 'https://github.com/mxw/vim-jsx'
@@ -19,6 +18,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'https://github.com/scrooloose/nerdtree'
         Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
         Plug 'junegunn/fzf.vim'
+        Plug 'https://github.com/ervandew/supertab'
 
 " Initialize plugin system
 call plug#end()
@@ -346,3 +346,13 @@ filetype plugin indent on   " required
 
     " ,f
         nnoremap <leader>f :<C-u>execute "Ag " . expand("<cword>") <Bar> cw<CR>
+
+    " In insert or command mode, move normally by using Ctrl
+        inoremap <C-h> <Left>
+        inoremap <C-j> <Down>
+        inoremap <C-k> <Up>
+        inoremap <C-l> <Right>
+        cnoremap <C-h> <Left>
+        cnoremap <C-j> <Down>
+        cnoremap <C-k> <Up>
+        cnoremap <C-l> <Right>
