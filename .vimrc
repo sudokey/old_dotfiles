@@ -5,13 +5,12 @@ filetype off        " required
 call plug#begin('~/.vim/plugged')
 
 " Plugins
-    " TODO: Less plug
-    " TODO: Nerdcommenter
     " Syntax
         Plug 'https://github.com/pangloss/vim-javascript'
         Plug 'https://github.com/mxw/vim-jsx'
         Plug 'https://github.com/wavded/vim-stylus'
         Plug 'https://github.com/ryym/vim-riot'
+        Plug 'https://github.com/groenewege/vim-less'
 
     " Other
         Plug 'git://github.com/altercation/vim-colors-solarized.git'
@@ -19,6 +18,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
         Plug 'junegunn/fzf.vim'
         Plug 'https://github.com/ervandew/supertab'
+        Plug 'scrooloose/nerdcommenter'
 
 " Initialize plugin system
 call plug#end()
@@ -283,6 +283,25 @@ filetype plugin indent on   " required
 
         " Ignoring certain patterns
         let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+
+    " Nerdcommenter
+        " Add spaces after comment delimiters by default
+        let g:NERDSpaceDelims = 1
+
+        " Use compact syntax for prettified multi-line comments
+        let g:NERDCompactSexyComs = 1
+
+        " Align line-wise comment delimiters flush left instead of following code indentation
+        let g:NERDDefaultAlign = 'left'
+
+        " Set a language to use its alternate delimiters by default
+        let g:NERDAltDelims_java = 1
+
+        " Allow commenting and inverting empty lines (useful when commenting a region)
+        let g:NERDCommentEmptyLines = 1
+
+        " Enable trimming of trailing whitespace when uncommenting
+        let g:NERDTrimTrailingWhitespace = 1
 
 " Шорткаты
     let mapleader = ","
