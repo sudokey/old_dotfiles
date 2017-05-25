@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'junegunn/fzf.vim'
         Plug 'https://github.com/ervandew/supertab'
         Plug 'scrooloose/nerdcommenter'
+        Plug 'https://github.com/mattn/emmet-vim'
 
 " Initialize plugin system
 call plug#end()
