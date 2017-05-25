@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'https://github.com/wavded/vim-stylus'
         Plug 'https://github.com/ryym/vim-riot'
         Plug 'https://github.com/groenewege/vim-less'
+        Plug 'https://github.com/evidens/vim-twig'
 
     " Other
         Plug 'git://github.com/altercation/vim-colors-solarized.git'
