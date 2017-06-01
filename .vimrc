@@ -306,6 +306,11 @@ filetype plugin indent on   " required
         " Enable trimming of trailing whitespace when uncommenting
         let g:NERDTrimTrailingWhitespace = 1
 
+    " Tabs
+        hi TabLine      guifg=#333 guibg=#222 gui=none ctermfg=254 ctermbg=238 cterm=none
+        hi TabLineSel   guifg=#666 guibg=#222 gui=bold ctermfg=231 ctermbg=235 cterm=bold
+        hi TabLineFill  guifg=#999 guibg=#222 gui=none ctermfg=254 ctermbg=238 cterm=none
+
 " Шорткаты
     let mapleader = ","
 
