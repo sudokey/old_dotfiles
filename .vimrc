@@ -153,7 +153,7 @@ filetype plugin indent on   " required
     endif
 
     " Wrap long lines
-    set wrap
+    " set wrap
 
     " Don't break words when wrapping
     " Only available when compiled with the +linebreak feature
@@ -175,6 +175,10 @@ filetype plugin indent on   " required
     set nobackup
     " Don't create swap files
     set noswapfile
+
+    " Speed up
+    set timeoutlen=1000
+    set ttimeoutlen=0
 
 " Search
     " While typing a search command, show pattern matches as it is typed
