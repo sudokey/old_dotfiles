@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
 
     " Other
         Plug 'git://github.com/altercation/vim-colors-solarized.git'
+        Plug 'chriskempson/base16-vim'
         Plug 'https://github.com/scrooloose/nerdtree'
         Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
         Plug 'junegunn/fzf.vim'
@@ -244,11 +245,14 @@ filetype plugin indent on   " required
     set statusline+=%=%{CurDir()}
 
 " Plugins
-    " Solarized
+    " Colorscheme
         let g:solarized_termcolors=256
+        let base16colorspace=256
         syntax enable
         set background=dark
         colorscheme solarized
+        " colorscheme base16-default-dark
+
 
     " JSX
         let g:jsx_ext_required = 0
@@ -387,3 +391,6 @@ filetype plugin indent on   " required
         cnoremap <C-j> <Down>
         cnoremap <C-k> <Up>
         cnoremap <C-l> <Right>
+
+    " Ремапим русские символы
+        set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
