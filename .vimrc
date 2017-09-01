@@ -154,7 +154,7 @@ filetype plugin indent on   " required
     endif
 
     " Wrap long lines
-    " set wrap
+    set nowrap
 
     " Don't break words when wrapping
     " Only available when compiled with the +linebreak feature
