@@ -15,7 +15,6 @@ call plug#begin('~/.vim/plugged')
 
     " Other
         Plug 'git://github.com/altercation/vim-colors-solarized.git'
-        Plug 'chriskempson/base16-vim'
         Plug 'https://github.com/scrooloose/nerdtree'
         Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
         Plug 'junegunn/fzf.vim'
@@ -247,11 +246,9 @@ filetype plugin indent on   " required
 " Plugins
     " Colorscheme
         let g:solarized_termcolors=256
-        let base16colorspace=256
         syntax enable
         set background=dark
         colorscheme solarized
-        " colorscheme base16-default-dark
 
 
     " JSX
