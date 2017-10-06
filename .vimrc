@@ -14,6 +14,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'https://github.com/evidens/vim-twig'
 
     " Other
+        Plug 'https://github.com/mileszs/ack.vim'
         Plug 'git://github.com/altercation/vim-colors-solarized.git'
         Plug 'https://github.com/scrooloose/nerdtree'
         Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
