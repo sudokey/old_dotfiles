@@ -277,6 +277,8 @@ filetype plugin indent on   " required
     " Ack
         " Replace ack on the_silver_searcher
         let g:ackprg = 'ag --vimgrep'
+        " let g:ackhighlight = 1
+        " let g:ack_use_dispatch = 1
 
     " FZF
         " Mapping selecting mappings
@@ -378,7 +380,7 @@ filetype plugin indent on   " required
         nnoremap <leader>w :setlocal wrap!<cr>
 
     " ,f
-        nnoremap <leader>f :<C-u>execute "Ag " . expand("<cword>") <Bar> cw<CR>
+        nnoremap <leader>f :<C-u>execute "Ack " . expand("<cword>") <Bar> cw<CR>
 
     " In insert or command mode, move normally by using Ctrl
         inoremap <C-h> <Left>
