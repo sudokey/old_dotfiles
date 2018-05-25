@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'scrooloose/nerdcommenter'
         " Plug 'https://github.com/mattn/emmet-vim'
         Plug 'https://github.com/ap/vim-buftabline'
+        Plug 'vim-syntastic/syntastic'
 
 " Initialize plugin system
 call plug#end()
@@ -295,6 +296,9 @@ filetype plugin indent on   " required
         " Ignoring certain patterns
         let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
 
+        command! -bang -nargs=* GG
+          \ call fzf#vim#grep('git grep --line-number '.shellescape(<q-args>), 0, <bang>0)
+
     " Nerdcommenter
         " Add spaces after comment delimiters by default
         let g:NERDSpaceDelims = 1
@@ -319,6 +323,14 @@ filetype plugin indent on   " required
         hi TabLineSel   guifg=#666 guibg=#222 gui=bold ctermfg=231 ctermbg=235 cterm=bold
         hi TabLineFill  guifg=#999 guibg=#222 gui=none ctermfg=254 ctermbg=238 cterm=none
 
+    " ESLint
+        let g:syntastic_mode_map = {
+            \ 'mode': 'passive',
+            \ 'active_filetypes': [],
+            \ 'passive_filetypes': [] }
+        let g:syntastic_javascript_checkers = ['eslint']
+        let g:syntastic_javascript_eslint_exe = '/home/dev/dev/code-standard/node_modules/.bin/eslint -c /home/dev/dev/code-standard/.eslintrc.json'
+
 " Шорткаты
     let mapleader = ","
 
@@ -342,6 +354,14 @@ filetype plugin indent on   " required
     " ,bd
         " Remove buffer
         nnoremap <Leader>bd :<C-u>bd<cr>
+
+    " <F7>
+        " Check syntax
+        nnoremap <F7> :SyntasticCheck<cr>
+
+    " <F8>
+        " Reset check syntax
+        nnoremap <F8> :SyntasticReset<cr>
 
     " <Esc><Esc>
         " Clear the search highlight in Normal mode
@@ -379,8 +399,12 @@ filetype plugin indent on   " required
         " Toggle wrap
         nnoremap <leader>w :setlocal wrap!<cr>
 
+    " ,bf
+        " Toggle wrap
+        nnoremap <leader>bf :<C-u>Buffers<cr>
+
     " ,f
-        nnoremap <leader>f :<C-u>execute "Ack " . expand("<cword>") <Bar> cw<CR>
+        nnoremap <leader>f :<C-u>execute "GG " . expand("<cword>") <Bar> cw<CR>
 
     " In insert or command mode, move normally by using Ctrl
         inoremap <C-h> <Left>
